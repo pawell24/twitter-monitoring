@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  frontend:
+    container_name: twitter-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - backend
+
   backend:
     container_name: twitter-backend
     build:
