@@ -6,6 +6,9 @@ import { ProfileModule } from './profile/profile.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Profile } from './profile/profile.entity/profile.entity';
 import { Activity } from './activity/activity.entity/activity.entity';
+import { ScheduleModule } from '@nestjs/schedule';
+import { AlertsModule } from './alerts/alerts.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -19,8 +22,11 @@ import { Activity } from './activity/activity.entity/activity.entity';
       entities: [Profile, Activity],
       synchronize: true,
     }),
+    ScheduleModule.forRoot(),
     ActivityModule,
     ProfileModule,
+    AlertsModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
